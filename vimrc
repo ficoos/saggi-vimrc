@@ -148,9 +148,6 @@ let g:pyflakes_use_quickfix = 0
 :set colorcolumn=80
 :highlight ColorColumn guibg=#161616
 
-"Fix autocomplete Enter key handling
-:inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 "ctrlp
 :set wildignore+=*.o,*.obj,.git,*.class,*.pyc,*.pyo,*.class,.hg,.svn
 
