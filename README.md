@@ -13,6 +13,7 @@
 * Configures airline to enable work with unpatched fonts
 * Go support
 * Git support
+* Python\go\c\cpp code completion
 * CTRL-P for opening files in the project quickly
 * CTRL-SHIFT-C and SHIFT-INS work in gvim like they would in a terminal
 * Better completion
