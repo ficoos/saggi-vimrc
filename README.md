@@ -1,5 +1,23 @@
 # Saggi's Wonderful VIMRC
 
+## Features
+
+* Fast graphical boot
+  
+  Disables the toolbar menu properly so that it's not only hidden but never
+  loaded. This prevents vim from wasting time searching for and loading icons
+  which speeds up start time of gvim.
+
+* Uses vundle for bundle management
+* Configures syntastic
+* Configures airline to enable work with unpatched fonts
+* Go support
+* Git support
+* CTRL-P for opening files in the project quickly
+* CTRL-SHIFT-C and SHIFT-INS work in gvim like they would in a terminal
+* Better completion
+* More...
+
 ## Installation instructions
 
 1. Download the vimrc file and put it (or parts of it) under `~/.vimrc`
