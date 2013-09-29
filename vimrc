@@ -41,15 +41,6 @@ Bundle 'bling/vim-airline'
 Bundle 'ciaranm/inkpot'
 
 " Syntastic
-"set stl=
-"set stl+=%t
-"set stl+=\
-"set stl+=%{fugitive#statusline()}
-"set stl+=\
-"set stl+=%#warningmsg#%{SyntasticStatuslineFlag()}%*
-"set stl+=\
-"set stl+=%h%m%r%=%-14.(%l,%c%V%)\ %P
-
 let g:syntastic_echo_current_error = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
