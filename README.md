@@ -39,3 +39,12 @@ cd ~/.vim/bundle/YouCompleteMe
 
 5. Restart vim
 6. Profit
+`
+## TODO
+- [x] Write a TODO list
+- [ ] Figure out if you can tie ctrl-p to figure out we are using netrw so it
+      works over SSH.
+- [ ] Get YouCompleteMe compilation automatic somehow
+- [ ] Get sparkup to work!
+- [ ] Integrate GDB
+- [ ] Figure out how to configure `make` action per project (.vimdir maybe?)
