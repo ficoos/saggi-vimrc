@@ -29,7 +29,7 @@ Bundle 'gmarik/vundle'
 Bundle 'Syntastic'
 Bundle 'Markdown'
 Bundle 'Valloric/YouCompleteMe'
-Bundle 'vim-scripts/Directory-specific-settings'
+Bundle 'embear/vim-localvimrc'
 Bundle 'tpope/vim-fugitive'
 Bundle 'Blackrush/vim-gocode'
 Bundle 'kchmck/vim-coffee-script'
@@ -39,6 +39,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
 
 Bundle 'ciaranm/inkpot'
+Bundle 'altercation/vim-colors-solarized'
 
 " Syntastic
 let g:syntastic_echo_current_error = 1
@@ -85,10 +86,13 @@ set wildmenu
 
 "Colors
 set t_Co=256
+let g:solarized_termcolors=256
 
 "Inkpot scheme
 :let g:inkpot_black_background = 1
-colorscheme inkpot
+"colorscheme inkpot
+set background=dark
+colorscheme solarized
 
 "Incremental search
 :set incsearch
@@ -136,27 +140,36 @@ let g:pyflakes_use_quickfix = 0
 :map Q <Nop>
 
 "Map F9 to build
-:nnoremap <silent> <F9> :make <CR>
+:nnoremap <silent> <C-B> :make<CR>
 
 "Map F10 to test
-:nnoremap <silent> <F10> :make test <CR>
+:nnoremap <silent> <F10> :make test<CR>
 
 "Map F11 to run
-:nnoremap <silent> <F11> :make run <CR>
+:nnoremap <silent> <F11> :make run<CR>
 
 "Highlight column 80
 :set colorcolumn=80
-:highlight ColorColumn guibg=#161616
+:highlight ColorColumn guibg=#073642
+
+"wildignore
+"python
+:set wildignore+=*.pyc,*.pyo
+"c/cpp
+:set wildignore+=*.o,*.obj
+"editors
+:set wildignore+=*.swp,*~
+"java
+:set wildignore+=*.class
+"VCS
+:set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
 "ctrlp
-:set wildignore+=*.o,*.obj,.git,*.class,*.pyc,*.pyo,*.class,.hg,.svn
-
 let g:ctrlp_user_command = {
     \ 'types': {
         \ 1: ['.git', 'cd %s && git ls-files . -co --exclude-standard'],
         \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-        \ },
-    \ 'fallback': 'find %s -type f'
+        \ }
 \ }
 
 "Less mode shortcut
@@ -165,6 +178,8 @@ let g:ctrlp_user_command = {
 "Beutify
 " for go
 :autocmd FileType go noremap <silent> <c-f> :Fmt<cr>
+let g:gocode_gofmt_tabwidth =""
+
 
 "airline
 set laststatus=2
@@ -174,4 +189,8 @@ let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme = 'serene'
+let g:airline_theme = 'solarized'
+
+"lvimrc
+let g:localvimrc_sandbox = 0
+let g:localvimrc_ask = 0
