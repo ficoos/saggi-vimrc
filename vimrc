@@ -37,6 +37,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
+Bundle 'vim-scripts/mediawiki.vim'
 
 Bundle 'ciaranm/inkpot'
 Bundle 'altercation/vim-colors-solarized'
@@ -179,6 +180,8 @@ let g:ctrlp_user_command = {
 " for go
 :autocmd FileType go noremap <silent> <c-f> :Fmt<cr>
 let g:gocode_gofmt_tabwidth =""
+
+:noremap <c-g> :Ggrep
 
 
 "airline
