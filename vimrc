@@ -38,6 +38,7 @@ Bundle 'rstacruz/sparkup'
 Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
 Bundle 'vim-scripts/mediawiki.vim'
+Bundle 'vim-scripts/colorschemer'
 
 Bundle 'ciaranm/inkpot'
 Bundle 'altercation/vim-colors-solarized'
