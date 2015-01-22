@@ -13,6 +13,7 @@ if has("gui_running")
    vmap <C-S-C> "+y
    " Hide the mouse pointer while typing
    set mousehide
+   set guifont=PragmataPro\ 10
 endif
 
 set nocompatible
@@ -26,12 +27,13 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Bundles
-Bundle 'Syntastic'
+Bundle 'scrooloose/syntastic'
 Bundle 'Markdown'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'embear/vim-localvimrc'
 Bundle 'tpope/vim-fugitive'
-Bundle 'Blackrush/vim-gocode'
+"Bundle 'Blackrush/vim-gocode'
+Bundle 'fatih/vim-go'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup'
@@ -39,6 +41,13 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'bling/vim-airline'
 Bundle 'vim-scripts/mediawiki.vim'
 Bundle 'vim-scripts/colorschemer'
+Bundle 'jdonaldson/vaxe'
+Bundle 'leafo/moonscript-vim'
+Bundle 'tikhomirov/vim-glsl'
+Bundle 'majutsushi/tagbar'
+Plugin 'wting/rust.vim'
+Bundle 'OrangeT/vim-csharp'
+Bundle 'cespare/vim-toml'
 
 Bundle 'ciaranm/inkpot'
 Bundle 'altercation/vim-colors-solarized'
@@ -57,6 +66,8 @@ let g:syntastic_java_check_disabled = 1
 "Go support
 let g:ycm_semantic_triggers =  {
   \   'go' : ['.'],
+  \   'rust' : ['::', '.'],
+  \   'lua' : ['.', ':'],
   \ }
 
 "Git
@@ -73,14 +84,14 @@ if filereadable("cscope.out")
     set cscopeverbose
 endif
 
-:autocmd FileType c,cpp,h nmap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
-:autocmd FileType c,cpp,h nmap <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
+":autocmd FileType c,cpp,h nmap <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
+":autocmd FileType c,cpp,h nmap <C-\> :cs find c <C-R>=expand("<cword>")<CR><CR>
 
 "Code jumping
-:autocmd FileType python nmap <C-\> :Ggrep "^\s*[^\#].*\<<cword>\>" -- *.py<CR>
+:autocmd FileType python nmap <C-\> :YcmCompleter GoToDeclaration<CR>
 :autocmd FileType * nmap <A-\> :Ggrep "\<<cword>\>" -- *.[ch]<CR>
-:autocmd FileType python nmap <C-]> :Ggrep "\(class\\|def\)\s\+<cword>\s*[(:]" -- *.py<CR>
-:autocmd FileType go nmap <C-]> :call GodefUnderCursor()<CR>
+:autocmd FileType python nmap <C-]> :YcmCompleter GoToDefinition<CR>
+:autocmd FileType go nmap <C-]> gd
 :let g:godef_split = 0
 
 "cmdline completion
@@ -114,7 +125,7 @@ filetype plugin indent on
 "Whitespace handling
 :com! CleanExtraWhitespace :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))"
 :nnoremap <silent> <F5> :CleanExtraWhitespace <CR>
-:autocmd BufWritePre \(*.py\|*.[ch]\|*.go\|*.java\|*.cpp\) :CleanExtraWhitespace
+:autocmd BufWritePre \(*.py\|*.[ch]\|*.go\|*.java\|*.cs\|*.cpp\) :CleanExtraWhitespace
 
 :highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
 :au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -143,12 +154,16 @@ let g:pyflakes_use_quickfix = 0
 
 "Map F9 to build
 :nnoremap <silent> <C-B> :make<CR>
+:nnoremap <silent> <F9> :make<CR>
 
 "Map F10 to test
 :nnoremap <silent> <F10> :make test<CR>
 
 "Map F11 to run
 :nnoremap <silent> <F11> :make run<CR>
+
+"Map F11 to nohl
+:nnoremap <silent> <F12> :nohl<CR>
 
 "Highlight column 80
 :set colorcolumn=80
@@ -198,3 +213,12 @@ let g:airline_theme = 'solarized'
 "lvimrc
 let g:localvimrc_sandbox = 0
 let g:localvimrc_ask = 0
+
+"vim-go
+let g:go_auto_type_info = 1
+
+set autowrite
+
+"racer
+let g:racer_cmd = "/home/saggi/projects/racer/target/racer"
+let $RUST_SRC_PATH="/home/saggi/projects/rust/src/"
