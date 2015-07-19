@@ -13,7 +13,6 @@ if has("gui_running")
    vmap <C-S-C> "+y
    " Hide the mouse pointer while typing
    set mousehide
-   set guifont=PragmataPro\ 10
 endif
 
 set nocompatible
@@ -45,23 +44,42 @@ Bundle 'jdonaldson/vaxe'
 Bundle 'leafo/moonscript-vim'
 Bundle 'tikhomirov/vim-glsl'
 Bundle 'majutsushi/tagbar'
-Plugin 'wting/rust.vim'
 Bundle 'OrangeT/vim-csharp'
 Bundle 'cespare/vim-toml'
+Bundle 'klen/python-mode'
 
 Bundle 'ciaranm/inkpot'
 Bundle 'altercation/vim-colors-solarized'
+
+"Python-mode
+
+" don't use linter, we use syntastic for that
+let g:pymode_lint_on_write = 0
+let g:pymode_lint_signs = 0
+" don't fold python code on open
+let g:pymode_folding = 0
+" don't load rope by default. Change to 1 to use rope
+let g:pymode_rope = 0
+" open definitions on same window, and custom mappings for definitions and
+" occurrences
+let g:pymode_rope_goto_definition_bind = ',d'
+let g:pymode_rope_goto_definition_cmd = 'e'
+nmap ,D :tab split<CR>:PymodePython rope.goto()<CR>
+nmap ,o :RopeFindOccurrences<CR>
+
 
 " Syntastic
 let g:syntastic_echo_current_error = 1
 let g:syntastic_enable_signs = 1
 let g:syntastic_enable_highlighting = 1
-let g:syntastic_auto_jump = 1
+let g:syntastic_auto_jump = 0
 let g:syntastic_auto_loc_list = 1
 
 " Checks for vala and java are buggy and annoying
 let g:syntastic_vala_check_disabled = 1
 let g:syntastic_java_check_disabled = 1
+
+let g:syntastic_python_checkers=['flake8']
 
 "Go support
 let g:ycm_semantic_triggers =  {
@@ -91,6 +109,8 @@ endif
 :autocmd FileType python nmap <C-\> :YcmCompleter GoToDeclaration<CR>
 :autocmd FileType * nmap <A-\> :Ggrep "\<<cword>\>" -- *.[ch]<CR>
 :autocmd FileType python nmap <C-]> :YcmCompleter GoToDefinition<CR>
+:autocmd FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()  # breakpoint<esc>
+:autocmd FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()  # breakpoint<esc>
 :autocmd FileType go nmap <C-]> gd
 :let g:godef_split = 0
 
@@ -103,9 +123,10 @@ let g:solarized_termcolors=256
 
 "Inkpot scheme
 :let g:inkpot_black_background = 1
-"colorscheme inkpot
 set background=dark
-colorscheme solarized
+"colorscheme inkpot
+"colorscheme solarized
+colorscheme cobalt
 
 "Incremental search
 :set incsearch
@@ -149,6 +170,13 @@ filetype plugin indent on
 "Pyflakes fix
 let g:pyflakes_use_quickfix = 0
 
+"tagbar
+" toggle tagbar display
+map <F4> :TagbarToggle<CR>
+" autofocus on tagbar open
+let g:tagbar_autofocus = 1
+
+
 "Disable EX mode
 :map Q <Nop>
 
@@ -167,7 +195,7 @@ let g:pyflakes_use_quickfix = 0
 
 "Highlight column 80
 :set colorcolumn=80
-:highlight ColorColumn guibg=#073642
+:highlight ColorColumn guibg=#073662
 
 "wildignore
 "python
@@ -202,13 +230,13 @@ let g:gocode_gofmt_tabwidth =""
 
 "airline
 set laststatus=2
-let g:airline_enable_branch = 1
-let g:airline_enable_syntastic = 1
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#Syntastic#enabled = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
-let g:airline_theme = 'solarized'
+let g:airline_theme = 'molokai'
 
 "lvimrc
 let g:localvimrc_sandbox = 0
