@@ -26,30 +26,27 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Bundles
-Bundle 'scrooloose/syntastic'
-Bundle 'Markdown'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'cespare/vim-toml'
+Bundle 'ciaranm/inkpot'
 Bundle 'embear/vim-localvimrc'
-Bundle 'tpope/vim-fugitive'
-"Bundle 'Blackrush/vim-gocode'
 Bundle 'fatih/vim-go'
 Bundle 'kchmck/vim-coffee-script'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup'
 Bundle 'kien/ctrlp.vim'
-Bundle 'bling/vim-airline'
-Bundle 'vim-scripts/mediawiki.vim'
-Bundle 'vim-scripts/colorschemer'
-Bundle 'jdonaldson/vaxe'
-Bundle 'leafo/moonscript-vim'
-Bundle 'tikhomirov/vim-glsl'
-Bundle 'majutsushi/tagbar'
-Bundle 'OrangeT/vim-csharp'
-Bundle 'cespare/vim-toml'
 Bundle 'klen/python-mode'
-
-Bundle 'ciaranm/inkpot'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'majutsushi/tagbar'
+Bundle 'Markdown'
+Bundle 'OrangeT/vim-csharp'
+Bundle 'rstacruz/sparkup'
+Bundle 'scrooloose/syntastic'
+Bundle 'tikhomirov/vim-glsl'
+Bundle 'tpope/vim-fugitive'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+Bundle 'vim-scripts/colorschemer'
+Bundle 'vim-scripts/mediawiki.vim'
+Plugin 'rust-lang/rust.vim'
 
 "Python-mode
 
@@ -80,6 +77,7 @@ let g:syntastic_vala_check_disabled = 1
 let g:syntastic_java_check_disabled = 1
 
 let g:syntastic_python_checkers=['flake8']
+let g:syntastic_javascript_checkers = ['eslint']
 
 "Go support
 let g:ycm_semantic_triggers =  {
@@ -139,6 +137,7 @@ set autoindent
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal expandtab
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal shiftwidth=4
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal softtabstop=4
+:autocmd FileType go setlocal tabstop=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
 filetype plugin indent on
@@ -231,7 +230,7 @@ let g:gocode_gofmt_tabwidth =""
 "airline
 set laststatus=2
 let g:airline#extensions#branch#enabled = 1
-let g:airline#extensions#Syntastic#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
 let g:airline_right_sep = ''
