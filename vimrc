@@ -108,12 +108,15 @@ endif
 :autocmd FileType * nmap <A-\> :Ggrep "\<<cword>\>" -- *.[ch]<CR>
 :autocmd FileType python nmap <C-]> :YcmCompleter GoToDefinition<CR>
 :autocmd FileType python map <silent> <leader>b oimport ipdb; ipdb.set_trace()  # breakpoint<esc>
-:autocmd FileType python map <silent> <leader>B Oimport pdb; pdb.set_trace()  # breakpoint<esc>
+:autocmd FileType python map <silent> <leader>B Oimport ipdb; ipdb.set_trace()  # breakpoint<esc>
 :autocmd FileType go nmap <C-]> gd
 :let g:godef_split = 0
 
 "cmdline completion
 set wildmenu
+
+"Show line numbers
+set number
 
 "Colors
 set t_Co=256
@@ -249,3 +252,11 @@ set autowrite
 "racer
 let g:racer_cmd = "/home/saggi/projects/racer/target/racer"
 let $RUST_SRC_PATH="/home/saggi/projects/rust/src/"
+
+"title setter
+function! Title(title)
+	let l:title='[' . a:title . '] %t%( %M%)%( (%F)%)%a'
+	let &titlestring=l:title
+endfunction
+
+:com! -nargs=1 Title :call Title("<args>")
